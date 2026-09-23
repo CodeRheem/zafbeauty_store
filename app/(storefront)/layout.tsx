@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";
+import { AdminAccessLogo } from "@/components/admin-access-logo";
 
 export default function StorefrontLayout({
   children,
@@ -12,9 +13,7 @@ export default function StorefrontLayout({
       <div className="flex min-h-screen flex-col">
         <header className="border-b">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-            <Link href="/" className="font-serif text-xl text-primary">
-              Zaf Beauty
-            </Link>
+            <AdminAccessLogo />
             <nav className="flex items-center gap-6 text-sm">
               <Link href="/" className="hover:text-primary">
                 Home
