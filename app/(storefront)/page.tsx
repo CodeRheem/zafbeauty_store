@@ -33,7 +33,7 @@ export default async function HomePage() {
           </p>
           <Link
             href="/products"
-            className="mt-8 inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="mt-8 inline-flex items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground transition hover:opacity-90"
           >
             Shop all products
           </Link>

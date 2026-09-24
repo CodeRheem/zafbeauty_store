@@ -20,10 +20,6 @@ export default async function AdminDashboardLayout({
     redirect("/admin/login");
   }
 
-  if (!user) {
-    redirect("/admin/login");
-  }
-
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
@@ -44,6 +40,14 @@ export default async function AdminDashboardLayout({
               className="text-sm text-muted-foreground hover:text-foreground"
             >
               Orders
+            </Link>
+            <Link
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
+              View Storefront ↗
             </Link>
             {user && (
               <form action={signOut}>

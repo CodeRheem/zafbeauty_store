@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -28,7 +27,10 @@ export default async function AdminProductsPage() {
             Manage your Zaf Beauty catalog
           </p>
         </div>
-        <Link href="/admin/products/new" className={buttonVariants()}>
+        <Link
+          href="/admin/products/new"
+          className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
+        >
           Add product
         </Link>
       </div>
@@ -44,7 +46,7 @@ export default async function AdminProductsPage() {
           <p className="text-muted-foreground">No products yet.</p>
           <Link
             href="/admin/products/new"
-            className="text-sm font-medium text-primary underline-offset-4 hover:underline"
+            className="mt-2 inline-block text-sm text-primary underline"
           >
             Add your first product
           </Link>
@@ -79,9 +81,12 @@ export default async function AdminProductsPage() {
                   </Badge>
                 </TableCell>
                 <TableCell className="text-right">
-                  <Button variant="ghost" size="sm">
-                    <Link href={`/admin/products/${product.id}`}>Edit</Link>
-                  </Button>
+                  <Link
+                    href={`/admin/products/${product.id}`}
+                    className="text-sm text-primary hover:underline"
+                  >
+                    Edit
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}

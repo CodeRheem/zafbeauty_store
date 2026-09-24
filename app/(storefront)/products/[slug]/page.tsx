@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getProductImageUrl } from "@/lib/storefront";
 import { Badge } from "@/components/ui/badge";
-import { AddToCartButton } from "@/components/cart/add-to-cart-button";
+import { ProductActions } from "@/components/product-actions";
 
 type ProductImage = { storage_path: string; is_primary: boolean };
 
@@ -114,9 +114,10 @@ export default async function ProductDetailPage({
             </div>
           )}
 
-          <AddToCartButton
+          <ProductActions
             productId={product.id}
             name={product.name}
+            slug={product.slug}
             price={product.price}
             imagePath={primaryImage?.storage_path ?? null}
             inStock={inStock}
