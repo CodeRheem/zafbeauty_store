@@ -44,9 +44,6 @@ export default async function ProductsPage({
         <h1 className="font-serif text-3xl text-primary">
           {activeCategory ? activeCategory.name : "All Products"}
         </h1>
-        <p className="mt-2 text-muted-foreground">
-          {products?.length ?? 0} product{products?.length === 1 ? "" : "s"}
-        </p>
       </div>
 
       {/* Category filter chips */}

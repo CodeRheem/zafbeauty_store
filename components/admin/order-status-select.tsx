@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SiteLoader } from "@/components/site-loader";
 
 const STATUSES = ["pending", "confirmed", "shipped", "completed", "cancelled"];
 
@@ -29,19 +30,22 @@ export function OrderStatusSelect({
   }
 
   return (
-    <Select value={status} onValueChange={handleChange}>
-      <SelectTrigger className="w-36" disabled={isPending}>
-        <SelectValue>
-          {STATUSES.find((s) => s === status) ?? status}
-        </SelectValue>
-      </SelectTrigger>
-      <SelectContent>
-        {STATUSES.map((s) => (
-          <SelectItem key={s} value={s}>
-            {s.charAt(0).toUpperCase() + s.slice(1)}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <div className="relative min-h-9 min-w-36">
+      {isPending && <SiteLoader label="UPDATING STATUS" />}
+      <Select value={status} onValueChange={handleChange}>
+        <SelectTrigger className="w-36" disabled={isPending}>
+          <SelectValue>
+            {STATUSES.find((s) => s === status) ?? status}
+          </SelectValue>
+        </SelectTrigger>
+        <SelectContent>
+          {STATUSES.map((s) => (
+            <SelectItem key={s} value={s}>
+              {s.charAt(0).toUpperCase() + s.slice(1)}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
   );
 }

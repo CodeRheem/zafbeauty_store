@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useCart } from "@/components/cart/cart-provider";
 import { getProductImageUrl, buildWhatsAppOrderLink } from "@/lib/storefront";
 import { saveOrder } from "@/lib/actions/orders";
+import { SiteLoader } from "@/components/site-loader";
 
 export default function CartPage() {
   const { items, totalPrice, updateQuantity, removeItem, clearCart } =
@@ -36,7 +37,8 @@ export default function CartPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12">
+    <div className="relative mx-auto max-w-3xl px-4 py-12">
+      {checkingOut && <SiteLoader label="PREPARING ORDER" />}
       <h1 className="font-serif text-3xl text-primary">Your Cart</h1>
 
       {items.length === 0 ? (

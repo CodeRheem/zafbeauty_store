@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
+import { SiteLoader } from "@/components/site-loader";
+import { useFormStatus } from "react-dom";
 import {
   Select,
   SelectContent,
@@ -38,6 +40,19 @@ type Product = {
   volume: string | null;
 };
 
+function ProductFormSubmit({ isEditing }: { isEditing: boolean }) {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending && <SiteLoader label="SAVING PRODUCT" />}
+      <Button type="submit" size="lg" disabled={pending}>
+        {isEditing ? "Save changes" : "Create product"}
+      </Button>
+    </>
+  );
+}
+
 export function ProductForm({
   categories,
   product,
@@ -48,7 +63,7 @@ export function ProductForm({
   const [categoryId, setCategoryId] = useState(product?.category_id ?? "");
 
   return (
-    <form action={saveProduct} className="space-y-8">
+    <form action={saveProduct} className="relative space-y-8">
       {product && <input type="hidden" name="id" value={product.id} />}
 
       {/* Basic info */}
@@ -242,9 +257,7 @@ export function ProductForm({
         </div>
       </section>
 
-      <Button type="submit" size="lg">
-        {product ? "Save changes" : "Create product"}
-      </Button>
+      <ProductFormSubmit isEditing={Boolean(product)} />
     </form>
   );
 }
