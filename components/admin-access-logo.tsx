@@ -40,18 +40,19 @@ export function AdminAccessLogo() {
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>
             <DialogTitle className="font-serif text-primary">
-              Admin sign-in
+              Admin page
             </DialogTitle>
             <DialogDescription>
-              This takes you to the Zaf Beauty admin sign-in page, not the
-              storefront homepage. Continue?
+              You are about to open the Zaf Beauty admin area. This page is for
+              authorized administrators only. Please do not tamper with the
+              admin login or dashboard.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setOpen(false)}>
-              Cancel
+              Go back
             </Button>
-            <Button onClick={handleConfirm}>Continue</Button>
+            <Button onClick={handleConfirm}>Continue to admin login</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

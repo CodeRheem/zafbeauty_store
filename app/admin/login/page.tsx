@@ -42,7 +42,9 @@ export default function AdminLoginPage() {
       {loading && <SiteLoader label="SIGNING IN" />}
       <div className="w-full max-w-sm space-y-6">
         <div className="space-y-1 text-center">
-          <h1 className="text-2xl font-serif text-primary">Zaf Beauty</h1>
+          <h1 className="font-serif text-2xl text-primary">
+            Zaf <span className="text-primary/70 underline decoration-primary/70 underline-offset-4">Beauty</span>
+          </h1>
           <p className="text-sm text-muted-foreground">Admin sign in</p>
         </div>
 
