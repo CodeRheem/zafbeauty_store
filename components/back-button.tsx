@@ -8,7 +8,7 @@ export function BackButton() {
   return (
     <button
       onClick={() => router.back()}
-      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary"
+      className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
     >
       <span aria-hidden="true">←</span>
       Back

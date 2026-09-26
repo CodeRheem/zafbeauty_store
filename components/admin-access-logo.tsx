@@ -31,7 +31,7 @@ export function AdminAccessLogo() {
       <a
         href="/admin/login"
         onClick={handleClick}
-        className="font-serif text-xl text-primary"
+        className="font-serif text-xl text-primary transition-opacity hover:opacity-80"
       >
         Zaf Beauty
       </a>

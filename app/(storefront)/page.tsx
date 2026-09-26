@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { getProductImageUrl } from "@/lib/storefront";
-import { LeafMotif } from "@/components/leaf-motif";
+import { HeroBackground } from "@/components/hero-background";
 
 export default async function HomePage() {
   const supabase = await createClient();
@@ -22,17 +22,21 @@ export default async function HomePage() {
 
   return (
     <div>
-      {/* Hero — asymmetric, headline paired with a botanical line motif */}
-      <section className="overflow-hidden">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:py-24 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-4">
-          <div>
-            <p className="text-sm tracking-wide text-muted-foreground">
+      {/* Hero — full-bleed animated background with text overlaid for legibility */}
+      <section className="relative h-[600px] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <HeroBackground />
+        </div>
+
+        <div className="relative z-20 mx-auto flex h-full max-w-6xl items-center px-4">
+          <div className="max-w-lg rounded-2xl border border-primary/15 bg-background/95 p-8 text-foreground shadow-xl backdrop-blur-md sm:p-10">
+            <p className="text-sm tracking-wide text-foreground/70">
               Face • Body • Everyday ritual
             </p>
-            <h1 className="mt-3 max-w-md font-serif text-4xl leading-[1.1] text-primary sm:text-5xl">
+            <h1 className="mt-3 font-serif text-4xl leading-[1.1] text-primary sm:text-5xl">
               Skincare that grows from what your skin already knows.
             </h1>
-            <p className="mt-5 max-w-sm text-muted-foreground">
+            <p className="mt-5 max-w-sm text-foreground/70">
               Zaf Beauty makes clean, considered skincare — face wash to
               sunscreen — formulated for the routine you actually keep.
             </p>
@@ -42,10 +46,6 @@ export default async function HomePage() {
             >
               Shop the range
             </Link>
-          </div>
-
-          <div className="mx-auto h-64 w-56 sm:h-80 sm:w-72 md:h-96 md:w-80">
-            <LeafMotif />
           </div>
         </div>
       </section>

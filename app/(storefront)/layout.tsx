@@ -14,21 +14,23 @@ export default function StorefrontLayout({
     <CartProvider>
       <FavoritesProvider>
         <div className="flex min-h-screen flex-col">
-          <header className="border-b">
+          <header className="border-b border-primary/15 bg-background text-primary shadow-sm">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
               <AdminAccessLogo />
-              <nav className="flex items-center gap-6 text-sm">
-                <Link href="/" className="hover:text-primary">
+              <div className="flex items-center gap-5">
+                <nav className="flex items-center gap-5 text-sm text-muted-foreground">
+                  <Link href="/" className="transition-colors hover:text-primary/70">
                   Home
-                </Link>
-                <Link href="/products" className="hover:text-primary">
+                  </Link>
+                  <Link href="/products" className="transition-colors hover:text-primary/70">
                   Shop
-                </Link>
-                <HeaderIcons />
-              </nav>
-            </div>
-            <div className="mx-auto max-w-6xl px-4 pb-3">
-              <BackButton />
+                  </Link>
+                  <BackButton />
+                </nav>
+                <div className="border-l border-primary/15 pl-3">
+                  <HeaderIcons />
+                </div>
+              </div>
             </div>
           </header>
 
@@ -36,7 +38,7 @@ export default function StorefrontLayout({
             {children}
           </main>
 
-          <footer className="border-t bg-secondary/30">
+          <footer className="bg-secondary/30">
             <div className="mx-auto max-w-6xl px-4 py-12">
               <div className="flex flex-col gap-8 sm:flex-row sm:justify-between">
                 <div className="max-w-xs">
@@ -62,7 +64,7 @@ export default function StorefrontLayout({
                   </div>
                 </div>
               </div>
-              <div className="mt-10 border-t pt-6 text-xs text-muted-foreground">
+              <div className="mt-10 pt-6 text-xs text-muted-foreground">
                 © {new Date().getFullYear()} Zaf Beauty. All rights reserved.
               </div>
             </div>
