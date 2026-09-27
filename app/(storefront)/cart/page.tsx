@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { LoaderCircle } from "lucide-react";
 import { useCart } from "@/components/cart/cart-provider";
 import { getProductImageUrl, buildWhatsAppOrderLink } from "@/lib/storefront";
 import { saveOrder } from "@/lib/actions/orders";
-import { SiteLoader } from "@/components/site-loader";
 
 export default function CartPage() {
   const { items, totalPrice, updateQuantity, removeItem, clearCart } =
@@ -38,7 +38,6 @@ export default function CartPage() {
 
   return (
     <div className="relative mx-auto max-w-3xl px-4 py-12">
-      {checkingOut && <SiteLoader label="PREPARING ORDER" />}
       <h1 className="font-serif text-3xl text-primary">Your Cart</h1>
 
       {items.length === 0 ? (
@@ -116,8 +115,9 @@ export default function CartPage() {
             <button
               onClick={handleCheckout}
               disabled={checkingOut}
-              className="mt-4 w-full rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition hover:opacity-90 active:scale-[0.98]"
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground transition hover:opacity-90 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50"
             >
+              {checkingOut && <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />}
               {checkingOut ? "Preparing order..." : "Checkout via WhatsApp"}
             </button>
           </div>

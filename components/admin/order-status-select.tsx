@@ -1,6 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
+import { LoaderCircle } from "lucide-react";
 import { updateOrderStatus } from "@/lib/actions/orders";
 import {
   Select,
@@ -9,7 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SiteLoader } from "@/components/site-loader";
 
 const STATUSES = ["pending", "confirmed", "shipped", "completed", "cancelled"];
 
@@ -30,8 +30,7 @@ export function OrderStatusSelect({
   }
 
   return (
-    <div className="relative min-h-9 min-w-36">
-      {isPending && <SiteLoader label="UPDATING STATUS" />}
+    <div className="flex min-h-9 min-w-36 items-center gap-2">
       <Select value={status} onValueChange={handleChange}>
         <SelectTrigger className="w-36" disabled={isPending}>
           <SelectValue>
@@ -46,6 +45,7 @@ export function OrderStatusSelect({
           ))}
         </SelectContent>
       </Select>
+      {isPending && <LoaderCircle className="size-4 animate-spin text-muted-foreground" aria-label="Updating status" />}
     </div>
   );
 }

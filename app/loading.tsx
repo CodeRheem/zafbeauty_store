@@ -1,9 +1,5 @@
-import { SiteLoader } from "@/components/site-loader";
+import { PageLoading } from "@/components/ui/page-loading";
 
 export default function Loading() {
-  return (
-    <div className="relative min-h-[50vh]">
-      <SiteLoader label="LOADING" />
-    </div>
-  );
+  return <PageLoading />;
 }

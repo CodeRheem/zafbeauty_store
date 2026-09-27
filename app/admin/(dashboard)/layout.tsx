@@ -25,7 +25,7 @@ export default async function AdminDashboardLayout({
       <header className="border-b">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <Link href="/admin" className="font-serif text-lg text-primary">
-            Zaf Beauty Admin
+            Zaf Beauty
           </Link>
 
           <nav className="flex items-center gap-4">
@@ -34,12 +34,6 @@ export default async function AdminDashboardLayout({
               className="text-sm text-muted-foreground hover:text-foreground"
             >
               Products
-            </Link>
-            <Link
-              href="/admin/orders"
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              Orders
             </Link>
             <Link
               href="/"

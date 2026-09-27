@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { SiteLoader } from "@/components/site-loader";
+import { LoaderCircle } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import {
   Select,
@@ -44,12 +44,10 @@ function ProductFormSubmit({ isEditing }: { isEditing: boolean }) {
   const { pending } = useFormStatus();
 
   return (
-    <>
-      {pending && <SiteLoader label="SAVING PRODUCT" />}
-      <Button type="submit" size="lg" disabled={pending}>
-        {isEditing ? "Save changes" : "Create product"}
-      </Button>
-    </>
+    <Button type="submit" size="lg" disabled={pending}>
+      {pending && <LoaderCircle className="animate-spin" aria-hidden="true" />}
+      {isEditing ? "Save changes" : "Create product"}
+    </Button>
   );
 }
 
