@@ -130,3 +130,40 @@
     @apply font-sans;
   }
 }
+
+.mobile-shard-fallback {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.78;
+}
+
+.mobile-shard-fallback span {
+  position: absolute;
+  display: block;
+  width: 32%;
+  height: 150%;
+  background: linear-gradient(135deg, transparent 0 32%, rgb(16 185 129 / 0.2) 43%, rgb(34 125 95 / 0.48) 48%, transparent 60%);
+  filter: drop-shadow(0 0 18px rgb(34 125 95 / 0.14));
+  transform: rotate(24deg) translateY(-15%);
+  animation: mobile-shard-drift 12s ease-in-out infinite alternate;
+}
+
+.mobile-shard-fallback span:nth-child(1) { left: -18%; animation-delay: -2s; }
+.mobile-shard-fallback span:nth-child(2) { left: -2%; transform: rotate(31deg) translateY(-12%); animation-delay: -7s; }
+.mobile-shard-fallback span:nth-child(3) { left: 14%; transform: rotate(18deg) translateY(-18%); animation-delay: -4s; }
+.mobile-shard-fallback span:nth-child(4) { left: 30%; transform: rotate(28deg) translateY(-10%); animation-delay: -9s; }
+.mobile-shard-fallback span:nth-child(5) { left: 46%; transform: rotate(20deg) translateY(-16%); animation-delay: -1s; }
+.mobile-shard-fallback span:nth-child(6) { left: 62%; transform: rotate(34deg) translateY(-13%); animation-delay: -6s; }
+.mobile-shard-fallback span:nth-child(7) { left: 78%; transform: rotate(22deg) translateY(-17%); animation-delay: -3s; }
+.mobile-shard-fallback span:nth-child(8) { left: 94%; transform: rotate(30deg) translateY(-11%); animation-delay: -8s; }
+
+@keyframes mobile-shard-drift {
+  from { translate: -2% 0; }
+  to { translate: 3% 2%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-shard-fallback span { animation: none; }
+}

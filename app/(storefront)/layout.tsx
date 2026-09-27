@@ -19,12 +19,6 @@ export default function StorefrontLayout({
               <AdminAccessLogo />
               <div className="flex items-center gap-5">
                 <nav className="flex items-center gap-5 text-sm text-muted-foreground">
-                  <Link href="/" className="transition-colors hover:text-primary/70">
-                  Home
-                  </Link>
-                  <Link href="/products" className="transition-colors hover:text-primary/70">
-                  Shop
-                  </Link>
                   <BackButton />
                 </nav>
                 <div className="border-l border-primary/15 pl-3">

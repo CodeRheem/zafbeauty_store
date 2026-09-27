@@ -21,8 +21,19 @@ export function HeroBackground() {
     return (
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-br from-secondary/50 via-background to-secondary/30"
-      />
+        className="absolute inset-0 overflow-hidden bg-gradient-to-br from-secondary/50 via-background to-secondary/30"
+      >
+        <div className="mobile-shard-fallback" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
     );
   }
 
