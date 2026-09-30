@@ -36,8 +36,8 @@ export default async function ProductDetailPage({
   const inStock = product.stock_quantity > 0;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
-      <div className="grid gap-10 md:grid-cols-2">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
+      <div className="grid gap-8 md:gap-10 md:grid-cols-2">
         {/* Image */}
         <div className="relative aspect-square overflow-hidden rounded-lg bg-secondary/40">
           {primaryImage ? (
@@ -62,11 +62,11 @@ export default async function ProductDetailPage({
               {(product.categories as unknown as { name: string }).name}
             </p>
           )}
-          <h1 className="mt-1 font-serif text-3xl text-primary">
+          <h1 className="mt-1 break-words font-serif text-3xl text-primary">
             {product.name}
           </h1>
 
-          <div className="mt-3 flex items-baseline gap-3">
+          <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="text-2xl font-medium">
               ₦{product.price.toLocaleString()}
             </span>

@@ -40,7 +40,7 @@ export function ProductActions({
     <div className="mt-6 space-y-3">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         {/* Quantity picker */}
-        <div className="flex items-center rounded-md border">
+        <div className="flex w-fit self-center items-center rounded-md border sm:self-auto">
           <button
             type="button"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -65,7 +65,7 @@ export function ProductActions({
           type="button"
           onClick={handleToggleFavorite}
           aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
-          className="flex items-center justify-center rounded-md border px-4 py-2 text-lg transition active:scale-90"
+          className="flex w-fit self-center items-center justify-center rounded-md border px-4 py-2 text-lg transition active:scale-90 sm:self-auto"
         >
           <span
             className={`transition-transform ${favorited ? "scale-110" : ""}`}
@@ -96,7 +96,7 @@ export function ProductActions({
             !inStock ? "pointer-events-none opacity-50" : ""
           }`}
         >
-          {inStock ? "Buy Now via WhatsApp" : "Out of stock"}
+          {inStock ? "Place Order" : "Out of stock"}
         </a>
       </div>
     </div>
