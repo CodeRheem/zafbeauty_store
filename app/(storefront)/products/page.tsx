@@ -99,7 +99,7 @@ export default async function ProductsPage({
                       src={getProductImageUrl(primaryImage.storage_path)}
                       alt={product.name}
                       fill
-                      className="object-cover transition group-hover:scale-105"
+                      className="object-contain p-3 transition"
                     />
                   ) : (
                     <div className="flex h-full items-center justify-center text-sm text-muted-foreground">

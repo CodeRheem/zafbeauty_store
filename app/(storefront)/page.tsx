@@ -136,7 +136,7 @@ export default async function HomePage() {
                         src={getProductImageUrl(primaryImage.storage_path)}
                         alt={product.name}
                         fill
-                        className="object-cover transition duration-300 group-hover:scale-105"
+                        className="object-contain p-3 transition duration-300"
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center text-muted-foreground">

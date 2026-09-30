@@ -45,7 +45,7 @@ export default async function ProductDetailPage({
               src={getProductImageUrl(primaryImage.storage_path)}
               alt={product.name}
               fill
-              className="object-cover"
+              className="object-contain p-4"
               priority
             />
           ) : (
