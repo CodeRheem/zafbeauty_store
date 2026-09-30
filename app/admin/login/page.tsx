@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, LoaderCircle } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, Eye, EyeOff, LoaderCircle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,7 +41,7 @@ export default function AdminLoginPage() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="w-full max-w-sm space-y-6">
+      <div className="w-full max-w-sm space-y-6 border-2 border-primary/35 bg-background/95 p-8 text-foreground shadow-xl backdrop-blur-md sm:p-10 rounded-2xl">
         <div className="space-y-1 text-center">
           <h1 className="font-serif text-2xl text-primary">
             Zaf <span className="text-primary/70 underline decoration-primary/70 underline-offset-4">Beauty</span>
@@ -88,6 +89,14 @@ export default function AdminLoginPage() {
             {loading && <LoaderCircle className="animate-spin" size={16} aria-hidden="true" />}
             {loading ? "Signing in..." : "Sign in"}
           </Button>
+
+          <Link
+            href="/"
+            className="inline-flex h-8 w-full items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-2.5 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <ArrowLeft size={16} aria-hidden="true" />
+            Back to storefront
+          </Link>
         </form>
       </div>
     </div>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#ffffff"/>
+  <text x="32" y="35" fill="#176b4e" font-family="Georgia, serif" font-size="26" text-anchor="middle">Zaf</text>
+  <path d="M34 17c0-6 3-10 8-13-1 6-3 10-8 13Z" fill="none" stroke="#176b4e" stroke-width="1.4"/>
+  <path d="M34 17c-5-1-8-4-10-8 5 0 8 3 10 8Z" fill="none" stroke="#176b4e" stroke-width="1.4"/>
+  <text x="32" y="47" fill="#176b4e" font-family="Arial, sans-serif" font-size="6" letter-spacing="2" text-anchor="middle">BEAUTY</text>
+</svg>

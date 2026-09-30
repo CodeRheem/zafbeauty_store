@@ -21,6 +21,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: "Zaf Beauty",
   description: "Clean, effective skincare rooted in nature.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

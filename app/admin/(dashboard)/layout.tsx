@@ -41,7 +41,7 @@ export default async function AdminDashboardLayout({
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-foreground"
             >
-              View Storefront ↗
+              Storefront
             </Link>
             {user && (
               <form action={signOut}>

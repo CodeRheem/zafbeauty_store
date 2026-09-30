@@ -34,11 +34,11 @@ export default async function HomePage() {
               Face • Body • Everyday ritual
             </p>
             <h1 className="mt-3 font-serif text-4xl leading-[1.1] text-primary sm:text-5xl">
-              Skincare that grows from what your skin already knows.
+              Glow with confidence.
             </h1>
             <p className="mt-5 max-w-sm text-foreground/70">
-              Zaf Beauty makes clean, considered skincare — face wash to
-              sunscreen — formulated for the routine you actually keep.
+              Zaf beauty curates effective and affordable routines from toners-sunscreens there’s something for everyone.
+              Over a hundred satisfied clients…
             </p>
             <Link
               href="/products"
