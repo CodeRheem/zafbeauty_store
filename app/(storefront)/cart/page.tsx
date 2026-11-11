@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { LoaderCircle } from "lucide-react";
 import { useCart } from "@/components/cart/cart-provider";
-import { getProductImageUrl, buildWhatsAppOrderLink } from "@/lib/storefront";
+import { ProductImage } from "@/components/product-image";
+import { buildWhatsAppOrderLink } from "@/lib/storefront";
 import { saveOrder } from "@/lib/actions/orders";
 
 export default function CartPage() {
@@ -37,8 +37,8 @@ export default function CartPage() {
   }
 
   return (
-    <div className="relative mx-auto max-w-3xl px-4 py-12">
-      <h1 className="font-serif text-3xl text-primary">Your Cart</h1>
+    <div className="relative mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-12">
+      <h1 className="font-serif text-2xl text-primary sm:text-3xl">Your Cart</h1>
 
       {items.length === 0 ? (
         <div className="mt-12 text-center">
@@ -55,25 +55,24 @@ export default function CartPage() {
           {items.map((item) => (
             <div
               key={item.productId}
-              className="flex gap-4 rounded-lg border p-4"
+              className="flex gap-3 rounded-xl border p-3 sm:gap-4 sm:p-4"
             >
-              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md bg-secondary/40">
-                {item.imagePath && (
-                  <Image
-                    src={getProductImageUrl(item.imagePath)}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                  />
-                )}
-              </div>
+              <ProductImage
+                storagePath={item.imagePath}
+                alt={item.name}
+                sizes="96px"
+                className="h-20 w-20 shrink-0 rounded-lg sm:h-24 sm:w-24"
+                imageClassName="p-1.5"
+              />
 
-              <div className="flex-1">
+              <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="font-medium">{item.name}</p>
+                  <p className="line-clamp-2 text-sm font-medium sm:text-base">
+                    {item.name}
+                  </p>
                   <button
                     onClick={() => removeItem(item.productId)}
-                    className="text-sm text-muted-foreground hover:text-destructive"
+                    className="shrink-0 text-xs text-muted-foreground transition-colors hover:text-destructive sm:text-sm"
                   >
                     Remove
                   </button>
@@ -82,11 +81,12 @@ export default function CartPage() {
                   ₦{item.price.toLocaleString()}
                 </p>
 
-                <div className="mt-2 flex items-center rounded-md border w-fit">
+                <div className="mt-2 flex w-fit items-center rounded-md border">
                   <button
                     onClick={() =>
                       updateQuantity(item.productId, item.quantity - 1)
                     }
+                    aria-label="Decrease quantity"
                     className="px-3 py-1 transition hover:bg-secondary active:scale-90"
                   >
                     −
@@ -98,6 +98,7 @@ export default function CartPage() {
                     onClick={() =>
                       updateQuantity(item.productId, item.quantity + 1)
                     }
+                    aria-label="Increase quantity"
                     className="px-3 py-1 transition hover:bg-secondary active:scale-90"
                   >
                     +

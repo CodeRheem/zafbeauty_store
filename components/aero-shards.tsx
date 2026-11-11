@@ -1440,7 +1440,7 @@ export default function AeroShards({
   const lightBackground = clamp((backgroundLuma - 0.58) / 0.24, 0, 1);
   const lightSurface = lightBackground * lightBackground * (3 - 2 * lightBackground);
 
-  settingsRef.current = {
+  const settings: AeroSettings = {
     background: resolvedBackground,
     shard: resolvedShardColor,
     highlight: mixColor(resolvedAccentColor, [1, 1, 1, 1], resolvedMaterial.highlightMix),
@@ -1507,8 +1507,12 @@ export default function AeroShards({
       paused
     ].join('|')
   };
-  const settingsSignature = settingsRef.current.signature;
-  onErrorRef.current = onError;
+  const settingsSignature = settings.signature;
+
+  useEffect(() => {
+    settingsRef.current = settings;
+    onErrorRef.current = onError;
+  });
 
   useEffect(() => {
     wakeRef.current();
@@ -1529,7 +1533,7 @@ export default function AeroShards({
     let timeoutId = 0;
     let unsubscribeResize: (() => void) | undefined;
     let unsubscribeGpuError: (() => void) | undefined;
-    let visibilityObserver: IntersectionObserver | undefined;
+    let visibilityObserver: IntersectionObserver | undefined = undefined;
     let resizeObserver: ResizeObserver | undefined;
     let visible = true;
     let visibilityRatio = 1;

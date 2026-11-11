@@ -26,13 +26,13 @@ export default async function EditProductPage({
 
   return (
     <div className="max-w-2xl space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-serif text-primary">Edit product</h1>
+          <h1 className="font-serif text-2xl text-primary">Edit product</h1>
           <p className="text-sm text-muted-foreground">{product.name}</p>
         </div>
 
-        <form action={handleDelete}>
+        <form action={handleDelete} className="self-start">
           <Button type="submit" variant="destructive" size="sm">
             Delete
           </Button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Heart } from "lucide-react";
 import { useCart } from "@/components/cart/cart-provider";
 import { useFavorites } from "@/components/favorites/favorites-provider";
 import { buildWhatsAppSingleProductLink } from "@/lib/storefront";
@@ -65,13 +66,14 @@ export function ProductActions({
           type="button"
           onClick={handleToggleFavorite}
           aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
-          className="flex w-fit self-center items-center justify-center rounded-md border px-4 py-2 text-lg transition active:scale-90 sm:self-auto"
+          className="flex w-fit self-center items-center justify-center rounded-md border px-4 py-2.5 text-primary transition hover:bg-secondary/60 active:scale-90 sm:self-auto"
         >
-          <span
-            className={`transition-transform ${favorited ? "scale-110" : ""}`}
-          >
-            {favorited ? "♥" : "♡"}
-          </span>
+          <Heart
+            className={`size-5 transition-transform ${
+              favorited ? "scale-110 fill-primary" : ""
+            }`}
+            aria-hidden="true"
+          />
         </button>
       </div>
 

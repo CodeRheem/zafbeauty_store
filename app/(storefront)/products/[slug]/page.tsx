@@ -1,8 +1,7 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { getProductImageUrl } from "@/lib/storefront";
 import { Badge } from "@/components/ui/badge";
+import { ProductImage } from "@/components/product-image";
 import { ProductActions } from "@/components/product-actions";
 
 type ProductImage = { storage_path: string; is_primary: boolean };
@@ -36,38 +35,31 @@ export default async function ProductDetailPage({
   const inStock = product.stock_quantity > 0;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
-      <div className="grid gap-8 md:gap-10 md:grid-cols-2">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
         {/* Image */}
-        <div className="relative aspect-square overflow-hidden rounded-lg bg-secondary/40">
-          {primaryImage ? (
-            <Image
-              src={getProductImageUrl(primaryImage.storage_path)}
-              alt={product.name}
-              fill
-              className="object-contain p-4"
-              priority
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center text-muted-foreground">
-              No image
-            </div>
-          )}
-        </div>
+        <ProductImage
+          storagePath={primaryImage?.storage_path}
+          alt={product.name}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
+          className="self-start md:sticky md:top-24"
+          imageClassName="p-5 sm:p-6"
+        />
 
         {/* Details */}
         <div>
           {product.categories && (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs tracking-[0.16em] text-muted-foreground uppercase">
               {(product.categories as unknown as { name: string }).name}
             </p>
           )}
-          <h1 className="mt-1 break-words font-serif text-3xl text-primary">
+          <h1 className="mt-2 break-words font-serif text-2xl text-primary sm:text-3xl">
             {product.name}
           </h1>
 
           <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span className="text-2xl font-medium">
+            <span className="text-xl font-semibold sm:text-2xl">
               ₦{product.price.toLocaleString()}
             </span>
             {product.compare_at_price && (

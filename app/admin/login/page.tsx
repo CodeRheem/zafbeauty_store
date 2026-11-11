@@ -40,8 +40,12 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="w-full max-w-sm space-y-6 border-2 border-primary/35 bg-background/95 p-8 text-foreground shadow-xl backdrop-blur-md sm:p-10 rounded-2xl">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4 py-10">
+      <div className="hero-ambient opacity-70" aria-hidden="true">
+        <span className="hero-orb hero-orb-1" />
+        <span className="hero-orb hero-orb-2" />
+      </div>
+      <div className="relative z-10 w-full max-w-sm space-y-6 rounded-2xl border-2 border-primary/35 bg-background/95 p-6 text-foreground shadow-xl backdrop-blur-md sm:p-10">
         <div className="space-y-1 text-center">
           <h1 className="font-serif text-2xl text-primary">
             Zaf <span className="text-primary/70 underline decoration-primary/70 underline-offset-4">Beauty</span>

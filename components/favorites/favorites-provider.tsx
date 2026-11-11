@@ -37,7 +37,11 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) setItems(JSON.parse(stored));
+      if (stored) {
+        // Hydration-safe: persisted favorites can only be read after mount.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setItems(JSON.parse(stored));
+      }
     } catch {
       // ignore malformed storage
     }

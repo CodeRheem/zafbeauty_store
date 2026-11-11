@@ -10,7 +10,7 @@ export function HeaderIcons() {
   const { totalItems: favCount } = useFavorites();
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-1 sm:gap-2">
       <Link
         href="/favorites"
         className="relative p-2 text-muted-foreground transition-colors hover:text-primary"

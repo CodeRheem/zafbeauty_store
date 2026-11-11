@@ -1,7 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
-import { getProductImageUrl } from "@/lib/storefront";
+import { ProductImage } from "@/components/product-image";
 import { cn } from "@/lib/utils";
 
 type ProductImage = { storage_path: string; is_primary: boolean };
@@ -39,15 +38,18 @@ export default async function ProductsPage({
   const activeCategory = categories?.find((c) => c.slug === categorySlug);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
       <div className="text-center">
-        <h1 className="font-serif text-3xl text-primary">
+        <h1 className="font-serif text-2xl text-primary sm:text-3xl">
           {activeCategory ? activeCategory.name : "All Products"}
         </h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          {products?.length ?? 0} {(products?.length ?? 0) === 1 ? "product" : "products"}
+        </p>
       </div>
 
       {/* Category filter chips */}
-      <div className="mt-8 flex flex-wrap justify-center gap-2">
+      <div className="mt-6 flex flex-wrap justify-center gap-2 sm:mt-8">
         <Link
           href="/products"
           className={cn(
@@ -81,7 +83,7 @@ export default async function ProductsPage({
           No products found in this category yet.
         </div>
       ) : (
-        <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 sm:mt-10 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-4">
           {products.map((product) => {
             const images = product.product_images as unknown as ProductImage[];
             const primaryImage =
@@ -91,24 +93,17 @@ export default async function ProductsPage({
               <Link
                 key={product.id}
                 href={`/products/${product.slug}`}
-                className="group"
+                className="group block"
               >
-                <div className="relative aspect-square overflow-hidden rounded-lg bg-secondary/40">
-                  {primaryImage ? (
-                    <Image
-                      src={getProductImageUrl(primaryImage.storage_path)}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-3 transition"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-                      No image
-                    </div>
-                  )}
-                </div>
+                <ProductImage
+                  storagePath={primaryImage?.storage_path}
+                  alt={product.name}
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
                 <div className="mt-3">
-                  <p className="font-medium">{product.name}</p>
+                  <p className="line-clamp-2 text-sm font-medium sm:text-base">
+                    {product.name}
+                  </p>
                   <p className="text-sm text-muted-foreground">
                     ₦{product.price.toLocaleString()}
                   </p>

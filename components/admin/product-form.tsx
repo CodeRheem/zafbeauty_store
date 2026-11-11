@@ -125,7 +125,7 @@ export function ProductForm({
       <section className="space-y-4">
         <h2 className="text-lg font-medium">Pricing &amp; stock</h2>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="price">Price (₦)</Label>
             <Input
@@ -152,7 +152,7 @@ export function ProductForm({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="stock_quantity">Stock quantity</Label>
             <Input
@@ -175,7 +175,7 @@ export function ProductForm({
           </div>
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <div className="flex items-center gap-2">
             <Switch
               id="is_active"

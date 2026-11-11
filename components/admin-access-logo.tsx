@@ -33,7 +33,7 @@ export function AdminAccessLogo() {
         onClick={handleClick}
         className="group inline-flex items-baseline gap-1.5 transition-opacity hover:opacity-85"
       >
-        <span className="relative font-serif text-base italic text-primary">
+        <span className="relative font-logo text-base italic text-primary">
           Zaf
           {/* Small leaf accent, positioned over the "a" */}
           <svg

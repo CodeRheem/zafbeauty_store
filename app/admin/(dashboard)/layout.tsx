@@ -22,16 +22,16 @@ export default async function AdminDashboardLayout({
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <Link href="/admin" className="font-serif text-lg text-primary">
+      <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
+          <Link href="/admin" className="font-serif text-base text-primary sm:text-lg">
             Zaf Beauty
           </Link>
 
-          <nav className="flex items-center gap-4">
+          <nav className="flex items-center gap-2 sm:gap-4">
             <Link
               href="/admin"
-              className="text-sm text-muted-foreground hover:text-foreground"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Products
             </Link>
@@ -39,7 +39,7 @@ export default async function AdminDashboardLayout({
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               Storefront
             </Link>
@@ -54,7 +54,9 @@ export default async function AdminDashboardLayout({
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+      <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+        {children}
+      </main>
     </div>
   );
 }

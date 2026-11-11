@@ -7,10 +7,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
   --font-heading: var(--font-serif);
+  --font-logo: var(--font-fraunces), ui-serif, Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -123,47 +124,155 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 22%, transparent);
+    color: var(--foreground);
   }
 }
 
-.mobile-shard-fallback {
+/* Ambient hero background used on mobile and whenever WebGPU shards are unavailable. */
+.hero-ambient {
   position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.78;
+  background:
+    radial-gradient(
+      115% 85% at 12% 8%,
+      oklch(0.93 0.035 150 / 0.9) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      110% 90% at 92% 20%,
+      oklch(0.92 0.03 88 / 0.85) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      165deg,
+      oklch(0.985 0.009 84.6) 0%,
+      oklch(0.955 0.018 150) 52%,
+      oklch(0.985 0.009 84.6) 100%
+    );
 }
 
-.mobile-shard-fallback span {
+.hero-orb {
   position: absolute;
   display: block;
-  width: 32%;
-  height: 150%;
-  background: linear-gradient(135deg, transparent 0 32%, rgb(16 185 129 / 0.2) 43%, rgb(34 125 95 / 0.48) 48%, transparent 60%);
-  filter: drop-shadow(0 0 18px rgb(34 125 95 / 0.14));
-  transform: rotate(24deg) translateY(-15%);
-  animation: mobile-shard-drift 12s ease-in-out infinite alternate;
+  border-radius: 9999px;
+  filter: blur(46px);
+  opacity: 0.55;
+  will-change: transform;
+  animation: hero-orb-float 20s ease-in-out infinite alternate;
 }
 
-.mobile-shard-fallback span:nth-child(1) { left: -18%; animation-delay: -2s; }
-.mobile-shard-fallback span:nth-child(2) { left: -2%; transform: rotate(31deg) translateY(-12%); animation-delay: -7s; }
-.mobile-shard-fallback span:nth-child(3) { left: 14%; transform: rotate(18deg) translateY(-18%); animation-delay: -4s; }
-.mobile-shard-fallback span:nth-child(4) { left: 30%; transform: rotate(28deg) translateY(-10%); animation-delay: -9s; }
-.mobile-shard-fallback span:nth-child(5) { left: 46%; transform: rotate(20deg) translateY(-16%); animation-delay: -1s; }
-.mobile-shard-fallback span:nth-child(6) { left: 62%; transform: rotate(34deg) translateY(-13%); animation-delay: -6s; }
-.mobile-shard-fallback span:nth-child(7) { left: 78%; transform: rotate(22deg) translateY(-17%); animation-delay: -3s; }
-.mobile-shard-fallback span:nth-child(8) { left: 94%; transform: rotate(30deg) translateY(-11%); animation-delay: -8s; }
+.hero-orb-1 {
+  top: -12%;
+  left: -14%;
+  width: 62%;
+  height: 62%;
+  max-width: 30rem;
+  max-height: 30rem;
+  background: oklch(0.68 0.09 75 / 0.5);
+  animation-delay: -4s;
+}
 
-@keyframes mobile-shard-drift {
-  from { translate: -2% 0; }
-  to { translate: 3% 2%; }
+.hero-orb-2 {
+  right: -16%;
+  bottom: -22%;
+  width: 70%;
+  height: 70%;
+  max-width: 34rem;
+  max-height: 34rem;
+  background: oklch(0.62 0.1 160 / 0.42);
+  animation-delay: -11s;
+}
+
+.hero-orb-3 {
+  top: 26%;
+  right: 18%;
+  width: 34%;
+  height: 34%;
+  max-width: 16rem;
+  max-height: 16rem;
+  background: oklch(0.99 0.01 100 / 0.75);
+  filter: blur(38px);
+  opacity: 0.7;
+  animation-delay: -7s;
+}
+
+.hero-sheen {
+  position: absolute;
+  inset: -35% -10%;
+  display: block;
+  background: linear-gradient(
+    105deg,
+    transparent 34%,
+    oklch(1 0 0 / 0.5) 47%,
+    oklch(1 0 0 / 0) 60%
+  );
+  transform: translateX(-18%) rotate(-6deg);
+  mix-blend-mode: soft-light;
+  animation: hero-sheen-drift 16s ease-in-out infinite alternate;
+}
+
+@keyframes hero-orb-float {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(6%, -4%, 0) scale(1.08);
+  }
+}
+
+@keyframes hero-sheen-drift {
+  from {
+    transform: translateX(-22%) rotate(-6deg);
+  }
+  to {
+    transform: translateX(18%) rotate(-6deg);
+  }
+}
+
+/* Branded page loader — a soft sweeping line rather than a spinner. */
+.zaf-loader-bar {
+  animation: zaf-loader-sweep 1.35s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+@keyframes zaf-loader-sweep {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mobile-shard-fallback span { animation: none; }
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-orb,
+  .hero-sheen {
+    animation: none;
+  }
+  .zaf-loader-bar {
+    animation: none;
+    opacity: 0.6;
+    transform: translateX(50%);
+  }
 }

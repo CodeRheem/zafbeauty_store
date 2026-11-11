@@ -6,6 +6,7 @@ export default function ImageGenerationLoaderShimmerDemo() {
   return (
     <div className="w-full px-6 py-10 sm:p-12">
       <div className="relative mx-auto aspect-4/3 w-full max-w-xl overflow-hidden rounded-2xl bg-neutral-900 outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://assets.aceternity.com/components/vertical-sliding-loader-demo-dark.webp"
           alt="A dark project creation interface"

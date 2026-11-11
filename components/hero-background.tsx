@@ -7,32 +7,28 @@ export function HeroBackground() {
   const [supported, setSupported] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Feature-detect WebGPU. Unsupported browsers (older Safari, many
-    // budget/older Android devices) fall back to a plain gradient instead
-    // of a blank or broken hero.
-    const hasWebGPU =
-      typeof navigator !== "undefined" && "gpu" in navigator;
-    setSupported(hasWebGPU);
+    // Heavier WebGPU shards are reserved for larger screens with support.
+    // Phones, reduced-motion users and unsupported browsers get the light
+    // ambient treatment instead of a blank or broken hero.
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const hasWebGPU = "gpu" in navigator;
+    // Hydration-safe: capabilities can only be detected on the client.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSupported(isDesktop && hasWebGPU && !prefersReducedMotion);
   }, []);
 
-  // While we haven't determined support yet (first client render), show the
-  // safe fallback rather than flashing the heavy effect in and out.
+  // While support is being determined (first client render), show the safe
+  // fallback rather than flashing the heavy effect in and out.
   if (supported !== true) {
     return (
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 overflow-hidden bg-gradient-to-br from-secondary/50 via-background to-secondary/30"
-      >
-        <div className="mobile-shard-fallback" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
+      <div aria-hidden="true" className="hero-ambient">
+        <span className="hero-orb hero-orb-1" />
+        <span className="hero-orb hero-orb-2" />
+        <span className="hero-orb hero-orb-3" />
+        <span className="hero-sheen" />
       </div>
     );
   }
