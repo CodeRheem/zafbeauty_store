@@ -64,7 +64,7 @@
   --secondary-foreground: oklch(0.27 0.03 160);
   --muted: oklch(0.955 0.012 87);
   --muted-foreground: oklch(0.5 0.025 160);
-  --accent: oklch(0.68 0.09 75);
+  --accent: oklch(0.93 0.018 145);
   --accent-foreground: oklch(0.22 0.025 160);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.89 0.012 87);
@@ -187,7 +187,7 @@
   height: 62%;
   max-width: 30rem;
   max-height: 30rem;
-  background: oklch(0.68 0.09 75 / 0.5);
+  background: oklch(0.62 0.1 160 / 0.42);
   animation-delay: -4s;
 }
 
@@ -248,6 +248,50 @@
   }
 }
 
+/* Landing page motion — a slow editorial ribbon and a rotating brand seal. */
+.landing-marquee {
+  animation: landing-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.landing-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes landing-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.seal-spin {
+  animation: seal-spin 30s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes seal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.seal-float {
+  animation: seal-float 9s ease-in-out infinite;
+}
+
+@keyframes seal-float {
+  0%,
+  100% {
+    transform: translateY(-6px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
 /* Branded page loader — a soft sweeping line rather than a spinner. */
 .zaf-loader-bar {
   animation: zaf-loader-sweep 1.35s cubic-bezier(0.45, 0, 0.25, 1) infinite;
@@ -267,7 +311,10 @@
     scroll-behavior: auto;
   }
   .hero-orb,
-  .hero-sheen {
+  .hero-sheen,
+  .landing-marquee,
+  .seal-spin,
+  .seal-float {
     animation: none;
   }
   .zaf-loader-bar {

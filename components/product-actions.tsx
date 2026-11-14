@@ -41,7 +41,7 @@ export function ProductActions({
     <div className="mt-6 space-y-3">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         {/* Quantity picker */}
-        <div className="flex w-fit self-center items-center rounded-md border sm:self-auto">
+        <div className="flex w-full items-center justify-between rounded-md border sm:w-fit sm:self-auto sm:justify-start">
           <button
             type="button"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -66,7 +66,7 @@ export function ProductActions({
           type="button"
           onClick={handleToggleFavorite}
           aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
-          className="flex w-fit self-center items-center justify-center rounded-md border px-4 py-2.5 text-primary transition hover:bg-secondary/60 active:scale-90 sm:self-auto"
+          className="flex w-full items-center justify-center rounded-md border px-4 py-2.5 text-primary transition hover:bg-secondary/60 active:scale-90 sm:w-fit sm:self-auto"
         >
           <Heart
             className={`size-5 transition-transform ${
