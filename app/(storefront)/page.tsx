@@ -50,7 +50,7 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero — static brand backdrop with editorial copy overlaid */}
-      <section className="relative flex min-h-[620px] items-center overflow-hidden py-14 sm:min-h-[680px] sm:py-0">
+      <section className="relative flex min-h-[520px] items-start overflow-hidden pt-9 pb-14 sm:min-h-[680px] sm:items-center sm:py-0">
         <div
           aria-hidden="true"
           className="absolute inset-0 z-0 overflow-hidden bg-background"
@@ -69,14 +69,25 @@ export default async function HomePage() {
         <div className="relative z-20 mx-auto grid w-full max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="max-w-xl">
             <Reveal>
-              <p className="flex items-center gap-3 text-[0.65rem] font-medium tracking-[0.35em] text-primary/70 uppercase">
-                <span className="h-px w-10 bg-primary" aria-hidden="true" />
-                Face · Body · Everyday ritual
+              <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.55rem] font-medium tracking-[0.26em] text-primary/70 uppercase sm:gap-x-3 sm:text-[0.6rem] sm:tracking-[0.32em]">
+                <span
+                  className="h-px w-8 bg-primary sm:w-10"
+                  aria-hidden="true"
+                />
+                <span>Face</span>
+                <span className="text-primary/35" aria-hidden="true">
+                  ·
+                </span>
+                <span>Body</span>
+                <span className="text-primary/35" aria-hidden="true">
+                  ·
+                </span>
+                <span>Everyday ritual</span>
               </p>
             </Reveal>
 
             <Reveal delay={0.08} y={22}>
-              <h1 className="mt-5 font-serif text-[2.7rem] leading-[1.02] text-primary sm:text-6xl lg:text-[4.35rem]">
+              <h1 className="mt-4 font-serif text-[2.7rem] leading-[1.02] text-primary sm:mt-5 sm:text-6xl lg:text-[4.35rem]">
                 Glow with
                 <span className="mt-1 block italic text-primary">
                   confidence.
@@ -85,14 +96,14 @@ export default async function HomePage() {
             </Reveal>
 
             <Reveal delay={0.16}>
-              <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/70 sm:text-base">
+              <p className="mt-5 max-w-md text-sm leading-relaxed text-foreground/70 sm:mt-6 sm:text-base">
                 Zaf beauty curates effective and affordable routines from toners-sunscreen there&apos;s something for everyone.
                 Over a hundred satisfied clients...
               </p>
             </Reveal>
 
             <Reveal delay={0.24}>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
                 <Link
                   href="/products"
                   className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition duration-300 hover:shadow-lg hover:shadow-primary/20 active:scale-[0.99]"
@@ -124,7 +135,7 @@ export default async function HomePage() {
             </Reveal>
 
             <Reveal delay={0.32}>
-              <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-primary/15 pt-5">
+              <dl className="mt-8 grid max-w-md grid-cols-3 gap-4 border-t border-primary/15 pt-5 sm:mt-10">
                 <div>
                   <dt className="font-serif text-lg text-primary sm:text-2xl">
                     100+
@@ -151,12 +162,6 @@ export default async function HomePage() {
                 </div>
               </dl>
             </Reveal>
-
-            <div className="mt-8 flex justify-center lg:hidden">
-              <Reveal delay={0.24} y={0}>
-                <RotatingSeal compact />
-              </Reveal>
-            </div>
           </div>
 
           <div className="relative hidden justify-end lg:flex">
