@@ -75,7 +75,7 @@ export default async function HomePage() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.08} y={34}>
+            <Reveal delay={0.08} y={22}>
               <h1 className="mt-5 font-serif text-[2.7rem] leading-[1.02] text-primary sm:text-6xl lg:text-[4.35rem]">
                 Glow with
                 <span className="mt-1 block italic text-primary">
@@ -86,7 +86,7 @@ export default async function HomePage() {
 
             <Reveal delay={0.16}>
               <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/70 sm:text-base">
-                Zaf beauty curates effective and affordable routines from toners-sunscreen there's something for everyone.
+                Zaf beauty curates effective and affordable routines from toners-sunscreen there&apos;s something for everyone.
                 Over a hundred satisfied clients...
               </p>
             </Reveal>
@@ -151,6 +151,12 @@ export default async function HomePage() {
                 </div>
               </dl>
             </Reveal>
+
+            <div className="mt-8 flex justify-center lg:hidden">
+              <Reveal delay={0.24} y={0}>
+                <RotatingSeal compact />
+              </Reveal>
+            </div>
           </div>
 
           <div className="relative hidden justify-end lg:flex">

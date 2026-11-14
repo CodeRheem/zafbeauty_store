@@ -1,8 +1,28 @@
-export function RotatingSeal() {
+import { cn } from "@/lib/utils";
+
+export function RotatingSeal({
+  compact = false,
+  className,
+}: {
+  compact?: boolean;
+  className?: string;
+}) {
+  const ringId = compact ? "seal-ring-compact" : "seal-ring";
   return (
-    <div className="seal-float relative flex size-56 items-center justify-center">
+    <div
+      className={cn(
+        "seal-float relative flex items-center justify-center",
+        compact ? "size-36" : "size-56",
+        className
+      )}
+    >
       <span className="absolute inset-0 rounded-full border border-primary/15" />
-      <span className="absolute inset-4 rounded-full border border-dashed border-primary/20" />
+      <span
+        className={cn(
+          "absolute rounded-full border border-dashed border-primary/20",
+          compact ? "inset-3" : "inset-4"
+        )}
+      />
 
       <svg
         viewBox="0 0 200 200"
@@ -11,24 +31,34 @@ export function RotatingSeal() {
       >
         <defs>
           <path
-            id="seal-ring"
+            id={ringId}
             d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"
           />
         </defs>
         <text
           fill="currentColor"
           className="text-primary/55"
-          fontSize="9"
-          letterSpacing="4.6"
+          fontSize={compact ? 8 : 9}
+          letterSpacing={compact ? 4.2 : 4.6}
         >
-          <textPath href="#seal-ring" startOffset="0">
+          <textPath href={`#${ringId}`} startOffset="0">
             CLEAN · CONSIDERED · RADIANT · EVERYDAY ·
           </textPath>
         </text>
       </svg>
 
-      <div className="relative flex size-24 items-center justify-center rounded-full bg-background/70 shadow-sm backdrop-blur">
-        <svg viewBox="0 0 24 24" className="size-10" fill="none" aria-hidden="true">
+      <div
+        className={cn(
+          "relative flex items-center justify-center rounded-full bg-background/70 shadow-sm backdrop-blur",
+          compact ? "size-16" : "size-24"
+        )}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          className={compact ? "size-7" : "size-10"}
+          fill="none"
+          aria-hidden="true"
+        >
           <path
             d="M12 21 C 12 15, 12 9, 16.5 3"
             stroke="var(--color-primary)"
