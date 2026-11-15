@@ -11,10 +11,11 @@ export function BackButton() {
   return (
     <button
       onClick={() => router.back()}
+      aria-label="Go back"
       className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-primary"
     >
       <span aria-hidden="true">←</span>
-      Back
+      <span className="hidden sm:inline">Back</span>
     </button>
   );
 }

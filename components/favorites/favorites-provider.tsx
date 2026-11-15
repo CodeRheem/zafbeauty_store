@@ -22,6 +22,7 @@ type FavoritesContextType = {
   isFavorite: (productId: string) => boolean;
   removeFavorite: (productId: string) => void;
   totalItems: number;
+  hydrated: boolean;
 };
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
@@ -81,6 +82,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
         isFavorite,
         removeFavorite,
         totalItems: items.length,
+        hydrated,
       }}
     >
       {children}
