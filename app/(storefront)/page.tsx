@@ -186,16 +186,6 @@ export default async function HomePage() {
                 />
               </div>
 
-              <div className="absolute top-1/2 -left-3 size-20 -translate-y-1/2 overflow-hidden rounded-2xl border-4 border-background shadow-xl shadow-primary/10 sm:-left-6 sm:size-24 lg:size-28">
-                <Image
-                  src="/images/ritual-glow.jpg"
-                  alt="Glowing skin with hydrating under-eye patches"
-                  fill
-                  sizes="(max-width: 640px) 80px, 112px"
-                  className="object-cover"
-                />
-              </div>
-
               <div className="absolute -top-5 -right-3 hidden sm:block lg:-right-6">
                 <RotatingSeal compact />
               </div>
