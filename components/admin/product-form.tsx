@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useFormStatus } from "react-dom";
@@ -14,7 +14,7 @@ import {
   Save,
   Sparkles,
 } from "lucide-react";
-import { saveProduct } from "@/lib/actions/products";
+import { saveProduct, type SaveProductState } from "@/lib/actions/products";
 import { getProductImageUrl } from "@/lib/storefront";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -141,19 +141,59 @@ export function ProductForm({
   product?: Product;
   imagePath?: string | null;
 }) {
+  const initialState: SaveProductState = { error: null };
+  const [state, formAction] = useActionState(saveProduct, initialState);
   const [categoryId, setCategoryId] = useState(product?.category_id ?? "");
   const [preview, setPreview] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
+  const previewUrlRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (previewUrlRef.current) URL.revokeObjectURL(previewUrlRef.current);
+    };
+  }, []);
 
   function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
-    setPreview(file ? URL.createObjectURL(file) : null);
+
+    if (previewUrlRef.current) {
+      URL.revokeObjectURL(previewUrlRef.current);
+      previewUrlRef.current = null;
+    }
+
+    if (!file) {
+      setPreview(null);
+      setImageError(null);
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      event.target.value = "";
+      setPreview(null);
+      setImageError("Please choose a JPG, PNG, WebP, GIF or AVIF image.");
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      event.target.value = "";
+      setPreview(null);
+      setImageError("That image is larger than 10 MB. Please choose a smaller file.");
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(file);
+    previewUrlRef.current = objectUrl;
+    setImageError(null);
+    setPreview(objectUrl);
   }
 
   const previewSrc =
     preview ?? (imagePath ? getProductImageUrl(imagePath) : null);
+  const errorMessage = imageError ?? state.error;
 
   return (
-    <form action={saveProduct} className="space-y-5">
+    <form action={formAction} className="space-y-5">
       {product && <input type="hidden" name="id" value={product.id} />}
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-start">
@@ -241,8 +281,9 @@ export function ProductForm({
                   />
                   <p className="mt-1.5 text-[0.68rem] leading-relaxed text-muted-foreground">
                     {product
-                      ? "Uploading a new image adds it to this product's gallery."
-                      : "Optional — you can add more images after creating the product."}
+                      ? "Adding a new image appends it to this product's gallery."
+                      : "Optional — you can add more images after creating the product."}{" "}
+                    JPG, PNG or WebP up to 10 MB.
                   </p>
                 </div>
               </div>
@@ -423,6 +464,15 @@ export function ProductForm({
           </div>
         </aside>
       </div>
+
+      {errorMessage && (
+        <p
+          role="alert"
+          className="rounded-xl border border-destructive/20 bg-destructive/5 px-4 py-3 text-sm text-destructive"
+        >
+          {errorMessage}
+        </p>
+      )}
 
       <div className="sticky bottom-3 z-20 flex items-center justify-between gap-3 rounded-2xl border border-primary/15 bg-background/95 p-2.5 shadow-lg shadow-primary/5 backdrop-blur sm:px-3">
         <Link

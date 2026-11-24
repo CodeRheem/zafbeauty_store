@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Leaf, Star } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { ProductImage } from "@/components/product-image";
@@ -164,9 +165,49 @@ export default async function HomePage() {
             </Reveal>
           </div>
 
-          <div className="relative hidden justify-end lg:flex">
-            <Reveal delay={0.35} y={0}>
-              <RotatingSeal />
+          <div className="relative flex justify-center pb-2 lg:justify-end lg:pb-0">
+            <Reveal
+              delay={0.35}
+              y={0}
+              className="relative w-full max-w-[15.5rem] sm:max-w-[21rem] lg:max-w-[23rem]"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-primary/15 bg-secondary/40 shadow-2xl shadow-primary/10 sm:rounded-[2rem]">
+                <Image
+                  src="/images/ritual-amber-bottle.jpg"
+                  alt="Amber serum bottle resting in warm afternoon light"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 62vw, (max-width: 1024px) 40vw, 368px"
+                  className="object-cover"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-linear-to-t from-primary/40 via-primary/5 to-transparent"
+                />
+              </div>
+
+              <div className="absolute top-1/2 -left-3 size-20 -translate-y-1/2 overflow-hidden rounded-2xl border-4 border-background shadow-xl shadow-primary/10 sm:-left-6 sm:size-24 lg:size-28">
+                <Image
+                  src="/images/ritual-glow.jpg"
+                  alt="Glowing skin with hydrating under-eye patches"
+                  fill
+                  sizes="(max-width: 640px) 80px, 112px"
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="absolute -top-5 -right-3 hidden sm:block lg:-right-6">
+                <RotatingSeal compact />
+              </div>
+
+              <div className="mt-4 max-w-[15.5rem] sm:mt-5 sm:max-w-none">
+                <p className="text-[0.5rem] font-medium tracking-[0.24em] text-primary/60 uppercase sm:text-[0.55rem]">
+                  The everyday essential
+                </p>
+                <p className="mt-1 font-serif text-base text-primary sm:text-lg">
+                  A ritual, not a routine.
+                </p>
+              </div>
             </Reveal>
           </div>
         </div>
@@ -231,6 +272,106 @@ export default async function HomePage() {
               </article>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* The ritual — editorial image mosaic */}
+      <section className="mx-auto max-w-6xl px-4 pb-14 sm:px-6 sm:pb-20">
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16">
+          <Reveal className="relative order-2 lg:order-1">
+            <div className="grid grid-cols-2 grid-rows-2 gap-3 sm:gap-4">
+              <div className="relative row-span-2 overflow-hidden rounded-[2rem] border border-primary/10 bg-secondary/40">
+                <Image
+                  src="/images/ritual-serum-eucalyptus.jpg"
+                  alt="Botanical facial serum with eucalyptus on soft linen"
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 30vw"
+                  className="object-cover"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-linear-to-t from-primary/25 via-transparent to-transparent"
+                />
+              </div>
+              <div className="relative aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-secondary/40 sm:rounded-3xl">
+                <Image
+                  src="/images/ritual-bath-salts.jpg"
+                  alt="Amber skincare bottles surrounded by mineral bath salts"
+                  fill
+                  sizes="(max-width: 1024px) 25vw, 15vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative aspect-square overflow-hidden rounded-2xl border border-primary/10 bg-secondary/40 sm:rounded-3xl">
+                <Image
+                  src="/images/ritual-serum-hand.jpg"
+                  alt="A drop of facial serum falling into an open palm"
+                  fill
+                  sizes="(max-width: 1024px) 25vw, 15vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            <span className="absolute -bottom-4 left-4 rounded-full border border-primary/15 bg-background/90 px-4 py-2 text-[0.55rem] font-medium tracking-[0.22em] text-primary uppercase shadow-sm backdrop-blur sm:left-6">
+              Clean · Considered · Daily
+            </span>
+          </Reveal>
+
+          <Reveal className="order-1 lg:order-2">
+            <p className="text-[0.65rem] font-medium tracking-[0.35em] text-primary/60 uppercase">
+              Inside the ritual
+            </p>
+            <h2 className="mt-3 font-serif text-3xl leading-[1.15] text-primary sm:text-4xl">
+              Small steps, <span className="italic">steady glow</span>
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Great skin is rarely one product. It&apos;s a short, repeatable
+              rhythm — a gentle cleanse, one targeted treatment, and protection
+              you&apos;ll actually wear every day.
+            </p>
+
+            <ol className="mt-7 divide-y divide-primary/10 border-y border-primary/10">
+              {[
+                {
+                  step: "01",
+                  title: "Cleanse",
+                  body: "Start with a formula that respects your barrier, not one that strips it.",
+                },
+                {
+                  step: "02",
+                  title: "Treat",
+                  body: "Choose one active for the concern on your mind — and let it do its work.",
+                },
+                {
+                  step: "03",
+                  title: "Protect",
+                  body: "Seal it in with moisture and SPF so the glow can keep up with your day.",
+                },
+              ].map((item) => (
+                <li key={item.step} className="flex gap-4 py-4 sm:gap-6">
+                  <span className="font-serif text-xs tabular-nums text-primary/40">
+                    {item.step}
+                  </span>
+                  <div>
+                    <h3 className="font-serif text-lg text-primary">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <Link
+              href="/products"
+              className="group mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition duration-300 hover:shadow-lg hover:shadow-primary/20 active:scale-[0.99]"
+            >
+              Build your routine
+              <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -406,6 +547,16 @@ export default async function HomePage() {
 
       {/* Closing note — personal recommendation */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <Image
+            src="/images/botanical-leaves.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-linear-to-r from-primary via-primary/85 to-primary/55" />
+        </div>
         <div
           className="pointer-events-none absolute -right-24 -top-24 size-96 rounded-full bg-primary-foreground/10 blur-3xl"
           aria-hidden="true"

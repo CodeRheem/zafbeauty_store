@@ -34,6 +34,15 @@ export default function CartPage() {
 
   async function handleCheckout() {
     setCheckingOut(true);
+
+    const link = buildWhatsAppOrderLink(
+      items.map((i) => ({ name: i.name, price: i.price, quantity: i.quantity }))
+    );
+
+    // Open WhatsApp while the click still counts as a user gesture — otherwise
+    // popup blockers can swallow it after the awaited server call.
+    const orderWindow = window.open(link, "_blank");
+
     try {
       await saveOrder(
         items.map((i) => ({
@@ -47,12 +56,12 @@ export default function CartPage() {
       // still let them complete via WhatsApp even if the DB save fails
     }
 
-    const link = buildWhatsAppOrderLink(
-      items.map((i) => ({ name: i.name, price: i.price, quantity: i.quantity }))
-    );
-    window.open(link, "_blank");
     clearCart();
     setCheckingOut(false);
+
+    if (!orderWindow) {
+      window.location.href = link;
+    }
   }
 
   if (!hydrated) {

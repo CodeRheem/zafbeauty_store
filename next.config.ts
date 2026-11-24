@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    // Product photos from phones are frequently larger than the 1 MB default,
+    // which made admin image uploads fail with an opaque server-action error.
+    serverActions: {
+      bodySizeLimit: "12mb",
+    },
+  },
   images: {
     remotePatterns: [
       {
